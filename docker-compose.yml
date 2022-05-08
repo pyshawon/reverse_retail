@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             coverage run manage.py test &&
+             coverage report &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    environment:
+      - SECRET_KEY=devsecretkey
+      - DEBUG=1
+      - ALLOWED_HOSTS=127.0.0.1
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme

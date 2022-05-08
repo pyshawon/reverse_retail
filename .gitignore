@@ -1,0 +1,43 @@
+*.pyc
+__pycache__/
+bin/
+include/
+lib/
+share/
+local/
+pip-selfcheck.json
+cache/
+
+.env
+db.sqlite3
+
+.vscode/
+*.mo
+
+*.orig
+*.pyc
+*.cfg
+
+data/
+media/
+tmp/
+.coverage
+
+### eclispe ###
+.settings
+.project
+.pydevproject
+src/media
+src/cl
+src/static_root
+
+*.pem
+
+
+### virtualenv ###
+virt_env
+
+### local settings ###
+src/tot/settings_local.py
+
+man/
